@@ -20,14 +20,14 @@ export const TaskList = () => {
             checkedCopy = checked.filter((taskName) => name.target.id != taskName );
         }
         setChecked(checkedCopy);
-        console.log({checked})
-        localStorage.setItem("todoList", JSON.stringify(checkedCopy));
+        localStorage.setItem("checked", JSON.stringify(checkedCopy));
     }
 
     useEffect(() => {
-        if (localStorage.getItem("todoList") !== null){
-            todoList = JSON.parse(localStorage.getItem("todoList"));
-            setChecked(todoList);
+        if (localStorage.getItem("checked") !== null){
+            setChecked(JSON.parse(localStorage.getItem("checked")));
+        } else {
+            setChecked([])
         }
     },[])
 
