@@ -1,14 +1,15 @@
 import { useState } from "react";
 import './task.css';
+import '../App.css'
 
 export const Task = (props) => {
-    const {name, state, desc, onCheckClick} = props
+    const {name, state, desc, onCheckClick, onDeleteTask} = props
 
-    console.log(name, state)
-
-    return(<div>
-            <input id={name} type="checkbox" checked={state} onChange={onCheckClick}/>
+    return(<div id={name}>
+            <input type="checkbox" checked={state} onChange={onCheckClick}/>
             <label  className={state ? "cheked" : "not-cheked"} htmlFor={name}>{name}: {desc}</label>
+            <button id ={'upd' + name} className = 'update-task icon' onClick={onDeleteTask}>✏</button>
+            <button id ={'del' + name} className = 'delete-task icon' onClick={onDeleteTask}>X</button>
         </div>
     )
 }

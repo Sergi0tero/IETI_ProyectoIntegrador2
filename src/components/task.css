@@ -1,3 +1,7 @@
+div {
+    margin-top: 1%;
+}
+
 .chek {
     text-decoration: line-through;
     color: gray;
@@ -5,4 +9,16 @@
 
 .not-cheked {
     color: black;
+}
+
+.update-task{
+    background-color: rgb(0, 238, 255);
+} .update-task:hover{
+    background-color: rgb(0, 111, 119);
+}
+
+.delete-task{
+    background-color: red;
+} .delete-task:hover{
+    background-color: rgb(138, 0, 0);
 }

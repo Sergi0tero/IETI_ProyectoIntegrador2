@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Task } from "./Task";
+import { UseTasks } from '../hooks/UseTasks';
+import { TaskCreator } from './TaskCreator';
+import '../App.css';
+import './TaskList.css'
 
-var todoList = [
-    {name : "todo1", description : "The todo #1"}, 
-    {name : "todo2", description : "The todo #2"}
-];
-localStorage.setItem("todoList", JSON.stringify(todoList))
 export const TaskList = () => {
-    const [checked, setChecked] = useState([])
+    const [checked, setChecked] = useState([]);
+    const [todoList, addTask, deleteTask, updateTask] = UseTasks([]);
 
     let checkedCopy = [...checked]
-
 
     const handleState = (name) =>{
         if(!checked.includes(name.target.id)){
@@ -33,15 +32,17 @@ export const TaskList = () => {
 
     return (
         <div>
-            <input id="input" type="text" placeholder="new task"/>
+            <TaskCreator></TaskCreator>
             <ul>
                 {
                     todoList.map((task) => (
                         <li >
-                            <Task name={task.name} 
+                            <Task
+                            name={task.name} 
                             state={checked.includes(task.name)} 
-                            desc={task.desc} 
+                            desc={task.description} 
                             onCheckClick={handleState}
+                            onDeleteTask = {deleteTask}
                             />
                         </li>
                     ))
