@@ -14,11 +14,15 @@ export const TaskCreator = (props) => {
     function createTask(){
         addTask({id : todoList.length, name : name, description : desc});
     }
+    const nameValid = name.length >= 3
     return(
-        <div>
-            <input id="nameInput" type="text" placeholder="Task name" onChange={onWriteName}/>
+        <form onSubmit={(event) => event.preventDefault()}>
+            <input id="nameInput" type="text" placeholder="Task name" onChange={onWriteName}/>{!nameValid && (
+            <span style={{ color: "red" }}>El nombre debe tener al menos 3 caracteres</span>
+          )}
+          <br />
             <input id="descInput" type="text" placeholder="Task description" onChange={onWriteDesc}/>
-            <button className='icon add-task' onClick={createTask}>+</button>
-        </div>
+            <button className='icon add-task' onClick={createTask} disabled = {!nameValid}>+</button>
+        </form>
     )
 }
