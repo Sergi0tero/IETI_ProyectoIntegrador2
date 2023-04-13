@@ -2,7 +2,7 @@ import { useState } from "react"
 import { UseTasks } from '../hooks/UseTasks';
 
 export const TaskCreator = (props) => {
-    const [todoList, addTask] = UseTasks();
+    const {todoList, addTask} = props;
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
     function onWriteName(event){
@@ -12,7 +12,7 @@ export const TaskCreator = (props) => {
         setDesc(event.target.value);
     }
     function createTask(){
-        addTask({id : todoList.length, name : name, description : desc});
+        addTask({name : name, description : desc});
     }
     const nameValid = name.length >= 3
     return(
