@@ -10,9 +10,8 @@ export function UseTasks(){
     const [todoList, setTodoList] = useState([]);
 
     const addTask = (task) => {
-        const newTodo = todoList;
-        newTodo.push(task)
-        setTodoList(newTodo)
+        const newTodo = [...todoList, task];
+        setTodoList(newTodo);
         localStorage.setItem("todoList", JSON.stringify(newTodo))
     }
 
@@ -23,12 +22,19 @@ export function UseTasks(){
         localStorage.setItem("todoList", JSON.stringify(newTodo))
     }
 
-    const updateTask = (event) => {
-        const previousTask = event.target.parentElement.id
-        const newTodo = todoList.filter((task) => previousTask != task.name);
-        newTodo.push('newval');
-        setTodoList(newTodo);
-        localStorage.setItem("todoList", JSON.stringify(newTodo))
+    const updateTask = (event) => {console.log('entro')
+        const taskId = event.target.parentElement.id
+        let newName = prompt("Enter the new name:", taskId);
+        let newDesc = prompt("Enter the new name:", taskId);
+        todoList.forEach(todo => {
+            if (todo.name == taskId){
+                todo.name = newName
+                todo.description = newDesc
+                const newTodo = todoList.filter((task) => taskId != task.name);
+                setTodoList(newTodo);
+                localStorage.setItem("todoList", JSON.stringify(newTodo))
+            } 
+        });
     }
 
     useEffect(() => {
