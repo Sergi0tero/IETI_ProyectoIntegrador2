@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { UseTasks } from '../hooks/UseTasks';
+import { Input, FormControl , Flex, Heading, Divider, UnorderedList, ListItem, Center, Button} from '@chakra-ui/react'
+import { useState } from "react";
 
 export const TaskCreator = (props) => {
     const {todoList, addTask} = props;
@@ -16,13 +16,18 @@ export const TaskCreator = (props) => {
     }
     const nameValid = name.length >= 3
     return(
-        <form onSubmit={(event) => event.preventDefault()}>
-            <input id="nameInput" type="text" placeholder="Task name" onChange={onWriteName}/>{!nameValid && (
-            <span style={{ color: "red" }}>El nombre debe tener al menos 3 caracteres</span>
-          )}
-          <br />
-            <input id="descInput" type="text" placeholder="Task description" onChange={onWriteDesc}/>
-            <button className='icon add-task' onClick={createTask} disabled = {!nameValid}>+</button>
-        </form>
+        <Flex justifyContent="center" width= "100%">
+            <FormControl width="50%" onSubmit={(event) => event.preventDefault()}>
+                    <Input justifySelf="center" borderRadius="10px" width="100%" id="nameInput" type="text" placeholder="Task name" onChange={onWriteName}/>
+                    <br />
+                    {!nameValid && (
+                    <span style={{ color: "#096bac" }}>El nombre debe tener al menos 3 caracteres</span>
+            )}
+            <br />
+                <Input borderRadius="10px" width="100%" id="descInput" type="text" placeholder="Task description" onChange={onWriteDesc}/>
+                <br />
+                <Button marginTop="2%" className='icon add-task' onClick={createTask} disabled = {!nameValid}>+</Button>
+            </FormControl >
+        </Flex>
     )
 }
