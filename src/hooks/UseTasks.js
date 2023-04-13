@@ -22,7 +22,7 @@ export function UseTasks(){
         localStorage.setItem("todoList", JSON.stringify(newTodo))
     }
 
-    const updateTask = (event) => {console.log('entro')
+    const updateTask = (event) => {
         const taskId = event.target.parentElement.id
         let newName = prompt("Enter the new name:", taskId);
         let newDesc = prompt("Enter the new name:", taskId);

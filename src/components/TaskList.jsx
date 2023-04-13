@@ -10,7 +10,6 @@ export const TaskList = () => {
     const [todoList, addTask, deleteTask, updateTask] = UseTasks();
 
     let checkedCopy = [...checked]
-    console.log(checked)
 
     const handleState = (name) =>{
         if(!checked.includes(event.target.parentElement.id)){
@@ -37,7 +36,7 @@ export const TaskList = () => {
             <ul>
                 {
                     todoList.map((task) => (
-                        <li >
+                        <li key={task.name}>
                             <Task
                             name={task.name} 
                             state={checked.includes(task.name)} 
